@@ -1,8 +1,10 @@
 package com.example.lambda.exercicios;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class FP04 {
@@ -183,5 +185,24 @@ public class FP04 {
                 .stream()
                 .collect(Collectors.groupingBy(Course::getCategory, Collectors.counting()));
 
+
+        Predicate<Course> reviewScoreGreaterThan95 = createPredicateWithCutOffReviewScore(95);
+        Predicate<Course> reviewScoreGreaterThan90 = createPredicateWithCutOffReviewScore(90);
+
+        List<String> cursos = Arrays.asList("Spring", "Microserviço", "Docker", "Kubernetes");
+
+        Optional<String> first = cursos.stream().filter(c -> c.length() > 7).map(String::toUpperCase).findFirst();
+        System.out.println("Uppercase: " + first.get());
+
+        cursos.replaceAll(s -> s.toUpperCase());
+
+        cursos.removeIf(course -> course.length() > 5);
+
     }
+
+    private static Predicate<Course> createPredicateWithCutOffReviewScore(int cutOffReviewScore) {
+        return course -> course.getReviewScore() > cutOffReviewScore;
+    }
+
+
 }

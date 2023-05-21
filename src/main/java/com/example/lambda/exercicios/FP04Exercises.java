@@ -1,10 +1,9 @@
 package com.example.lambda.exercicios;
-
-import org.w3c.dom.ls.LSOutput;
-
+import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 public class FP04Exercises {
     public static void main(String[] args) {
@@ -32,7 +31,15 @@ public class FP04Exercises {
                 .limit(10)
                 .boxed()
                 .collect(Collectors.toList()); //[2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
+
+        LongStream.rangeClosed(1, 50)
+                .mapToObj(BigInteger::valueOf).reduce(BigInteger.ONE, BigInteger::multiply);
+        //30414093201713378043612608166064768844377641568960512000000000000 = (reduce(1, (a, b) -> a*b))
+
+        //Higher Order Functions
+
     }
+
 
     private static int getSum(IntStream rangeOneToTen) {
         return rangeOneToTen.sum();
