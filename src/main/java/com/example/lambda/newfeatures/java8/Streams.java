@@ -47,6 +47,7 @@ class Produtos{
 
 public class Streams {
     public static void main(String[] args) {
+
         List<Produtos> listaProdutos = new ArrayList<>();
         listaProdutos.add(new Produtos(1000, "Geladeira 470L", 2999.00));
         listaProdutos.add(new Produtos(1000, "Geladeira 600L", 3999.00));
